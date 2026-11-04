@@ -118,7 +118,8 @@ function productsFromJson(this: IExecuteFunctions, value: unknown): unknown[] {
 		try {
 			parsed = JSON.parse(value);
 		} catch {
-			throw new NodeOperationError(this.getNode(), 'Products (JSON) is not valid JSON.', {
+			throw new NodeOperationError(this.getNode(), "'Products (JSON)' is not valid JSON.", {
+				description: "Check the quotes, commas and brackets in 'Products (JSON)'.",
 				itemIndex: 0,
 			});
 		}
@@ -130,8 +131,12 @@ function productsFromJson(this: IExecuteFunctions, value: unknown): unknown[] {
 	}
 	throw new NodeOperationError(
 		this.getNode(),
-		'Products (JSON) must be a list of products, or an object with a "produtos" list.',
-		{ itemIndex: 0 },
+		"'Products (JSON)' is not a list of products.",
+		{
+			description:
+				"Use a list of products, like [{\"nome\": \"X-Burger\"}], or an object with a 'produtos' list.",
+			itemIndex: 0,
+		},
 	);
 }
 
@@ -148,11 +153,10 @@ function checkedProducts(this: IExecuteFunctions, products: unknown[]): IDataObj
 		const isObject = product !== null && typeof product === 'object' && !Array.isArray(product);
 		const name = isObject ? (product as IDataObject).nome : undefined;
 		if (typeof name !== 'string' || name.trim() === '') {
-			throw new NodeOperationError(
-				this.getNode(),
-				`Product ${index + 1} has no name. Each product needs the "nome" field.`,
-				{ itemIndex: 0 },
-			);
+			throw new NodeOperationError(this.getNode(), `Product ${index + 1} has no name.`, {
+				description: "Add the 'nome' field to the product, with the name as it shows on the order.",
+				itemIndex: 0,
+			});
 		}
 	});
 	return products as IDataObject[];
@@ -209,16 +213,16 @@ export class Farol implements INodeType {
 					{
 						name: 'Get Status',
 						value: 'getStatus',
-						action: 'Get the status of the last submission',
+						action: 'Get recipe submission status',
 						description:
-							'Check the access key and the last submission: the system, the store, when it arrived, how many products and until when the key is valid',
+							'Check the access key and the last recipe submission: the system, the store, when it arrived, how many products and until when the key is valid',
 					},
 					{
 						name: 'Replace All',
 						value: 'replaceAll',
-						action: 'Replace all recipes of the store',
+						action: 'Replace all recipes in store',
 						description:
-							'Send the whole menu with its recipes. It replaces everything Farol had for the store.',
+							'Send the whole menu with its recipes. It replaces every recipe Farol had for the store.',
 					},
 				],
 				default: 'getStatus',
@@ -268,7 +272,7 @@ export class Farol implements INodeType {
 				required: true,
 				default: '[]',
 				description:
-					'A list of products, or an object with a "produtos" list. The README shows the format of a product.',
+					"A list of products, or an object with a 'produtos' list. The README shows the format of a product.",
 				displayOptions: {
 					show: {
 						resource: ['recipe'],
@@ -338,10 +342,10 @@ export class Farol implements INodeType {
 					if (items.length > 1) {
 						throw new NodeOperationError(
 							this.getNode(),
-							'With "Products From: JSON", the node expects a single input item.',
+							"With 'Products From' set to 'JSON', the node expects a single input item.",
 							{
 								description:
-									'Each submission replaces the whole menu, so the node does not send one per item. To send many products from many items, choose "Products From: Input Items".',
+									"Each submission replaces the whole menu, so the node does not send one per item. To send many products from many items, set 'Products From' to 'Input Items'.",
 								itemIndex: 0,
 							},
 						);

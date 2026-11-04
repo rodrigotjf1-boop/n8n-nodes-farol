@@ -121,6 +121,9 @@ Farol ignores price, cost, margin and customer data, and any field not described
   any problem stays out entirely, and the others go in. **Check `de_fora` after every submission**, for example with an
   IF node.
 
+With **Validate Only** on, the answer has the same fields, with `resultado` set to `so_validado` and `gravado` set to
+`false`: Farol checked the submission and saved nothing.
+
 When Farol refuses the whole submission, the node fails with a message in English and, in the description, Farol's own
 explanation (in Portuguese). The recipes the store had stay as they were.
 

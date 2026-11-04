@@ -23,7 +23,7 @@ export class FarolApi implements ICredentialType {
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			placeholder: 'dms_ap_farol_...',
+			placeholder: 'e.g. dms_ap_farol_...',
 			description:
 				'The access key that the account management creates in the Farol console. It starts with dms_ap_farol_ and works for one store only.',
 		},

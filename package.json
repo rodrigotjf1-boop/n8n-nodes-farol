@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-farol",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n node for Farol: send a restaurant's recipes (technical sheets) and check the last submission.",
 	"license": "MIT",
 	"homepage": "https://github.com/rodrigotjf1-boop/n8n-nodes-farol#readme",
