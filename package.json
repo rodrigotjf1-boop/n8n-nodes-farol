@@ -1,0 +1,54 @@
+{
+	"name": "n8n-nodes-farol",
+	"version": "0.1.0",
+	"description": "n8n node for Farol: send a restaurant's recipes (technical sheets) and check the last submission.",
+	"license": "MIT",
+	"homepage": "https://github.com/rodrigotjf1-boop/n8n-nodes-farol#readme",
+	"keywords": [
+		"n8n-community-node-package",
+		"farol",
+		"restaurant",
+		"recipes",
+		"technical-sheets"
+	],
+	"author": {
+		"name": "DMS Tecnologias",
+		"email": "suporte@dmstecnologias.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rodrigotjf1-boop/n8n-nodes-farol.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/FarolApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Farol/Farol.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
