@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- The package no longer ships the TypeScript build cache (`dist/tsconfig.tsbuildinfo`): 95 kB less, no change in
+  behavior.
+- First version published through npm trusted publishing (OIDC), with provenance.
+
 ## 0.1.0
 
 - First version: the Farol API credential and the Farol node, with the Recipe resource (Get Status and Replace All,
