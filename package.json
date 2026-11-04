@@ -17,7 +17,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/rodrigotjf1-boop/n8n-nodes-farol.git"
+		"url": "git+https://github.com/rodrigotjf1-boop/n8n-nodes-farol.git"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"scripts": {
 		"build": "n8n-node build",
